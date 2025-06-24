@@ -1,0 +1,18 @@
+const express = require('express'); // Importa el framework Express para crear la aplicación
+const cors = require('cors'); // Importa el middleware CORS para permitir solicitudes desde otros dominios
+const app = express(); // Crea una instancia de la aplicación Express
+
+
+// Middlewares
+app.use(cors()); // Habilita CORS para todas las rutas
+app.use(express.json()); // Para parsear JSON
+
+// Rutas
+const authRoutes = require('./routes/auth'); // Importa las rutas de autenticación
+app.use('/api/auth', authRoutes); // Define la ruta base para las rutas de autenticación
+
+// Iniciar servidor
+const PORT = process.env.PORT || 3000; // Define el puerto en el que se ejecutará el servidor, usando una variable de entorno o 3000 por defecto
+app.listen(PORT, () => { // Inicia el servidor y escucha en el puerto definido
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);    // Imprime un mensaje en la consola indicando que el servidor está corriendo
+});
