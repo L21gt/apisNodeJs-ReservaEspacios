@@ -1,0 +1,20 @@
+{
+  "name": "sistemareservaespacios",
+  "version": "1.0.0",
+  "description": "Luis Velasquez  \r Carnet 24011341  \r Curso Desarrollo de APIs NodeJS  \r 3er semestre - Tarea Sistema de Reserva de Espacios",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.16.2"
+  }
+}
