@@ -30,6 +30,17 @@ class Usuario {
     const { rows } = await pool.query(query, [email]);
     return rows[0];
   }
+
+  // Método para verificar las credenciales de un usuario
+  static async verificarCredenciales(email, password) { // Verifica si el email y la contraseña son correctos
+    const usuario = await Usuario.obtenerPorEmail(email); // Obtiene el usuario por su email
+    if (!usuario) throw new Error("Email no registrado"); // Si no se encuentra el usuario, lanza un error
+
+    const passwordValida = await bcrypt.compare(password, usuario.password); // Compara la contraseña proporcionada con la almacenada en la base de datos
+    if (!passwordValida) throw new Error("Contraseña incorrecta"); // Si la contraseña no es válida, lanza un error
+
+    return usuario; // Si todo está bien, retorna el usuario
+  }
 }
 
 // Exporta la clase Usuario para que pueda ser utilizada en otras partes de la aplicación
