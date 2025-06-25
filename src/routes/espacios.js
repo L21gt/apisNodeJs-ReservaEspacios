@@ -3,9 +3,10 @@ const router = express.Router(); // Crea un enrutador de Express para manejar la
 const Espacio = require('../models/Espacio'); // Importa el modelo de Espacio para interactuar con la base de datos
 const verificarToken = require('../middlewares/auth'); // Opcional: proteger la ruta con autenticación
 
-router.get('/disponibles', async (req, res) => {  // Ruta para listar todos los espacios disponibles
-  try {  // Maneja las solicitudes GET a la ruta /disponibles
-    const espacios = await Espacio.listarDisponibles(); // Llama al método estático listarDisponibles del modelo Espacio para obtener los espacios disponibles
+router.get('/disponibles', async (req, res) => { // Ruta para listar espacios disponibles
+  try { // Maneja las solicitudes GET a la ruta /espacios/disponibles
+    const { fecha_inicio, fecha_fin } = req.query;  // Extrae las fechas de inicio y fin de las consultas de la solicitud
+    const espacios = await Espacio.listarDisponibles(fecha_inicio, fecha_fin);  // Llama al método estático listarDisponibles del modelo Espacio para obtener los espacios disponibles en el rango de fechas especificado
     res.json(espacios); // Responde con los espacios disponibles en formato JSON
   } catch (error) { // Si ocurre un error, captura la excepción
     res.status(500).json({ error: error.message }); // Responde con un código de estado 500 (Error interno del servidor) y el mensaje de error

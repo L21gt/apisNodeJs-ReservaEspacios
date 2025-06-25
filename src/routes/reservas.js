@@ -19,4 +19,24 @@ router.post('/', verificarToken, async (req, res) => { // Ruta para crear una nu
   }
 });
 
+// Listar reservas del usuario actual
+router.get('/', verificarToken, async (req, res) => { // Ruta para listar las reservas del usuario actual
+  try { // Maneja las solicitudes GET a la ruta /reservas
+    const reservas = await Reserva.listarPorUsuario(req.usuarioId); // Llama al método estático listarPorUsuario del modelo Reserva para obtener las reservas del usuario actual
+    res.json(reservas); // Responde con las reservas obtenidas en formato JSON
+  } catch (error) { // Si ocurre un error, captura la excepción
+    res.status(500).json({ error: 'Error al obtener reservas' }); // Responde con un código de estado 500 (Error interno del servidor) y un mensaje genérico de error
+  }
+});
+
+// Ruta para cancelar una reserva
+router.patch('/:id/cancelar', verificarToken, async (req, res) => { // Maneja las solicitudes PATCH a la ruta /reservas/:id/cancelar
+  try { // Intenta cancelar una reserva con el ID proporcionado en los parámetros de la solicitud
+    const reserva = await Reserva.cancelar(req.params.id, req.usuarioId); // Llama al método estático cancelar del modelo Reserva, pasando el ID de la reserva y el ID del usuario del token decodificado
+    res.json(reserva); // Responde con la reserva cancelada
+  } catch (error) { // Si ocurre un error, captura la excepción
+    res.status(400).json({ error: error.message });// Responde con un código de estado 400 (Solicitud incorrecta) y el mensaje de error
+  }
+});
+
 module.exports = router; // Exporta el enrutador para que pueda ser utilizado en otras partes de la aplicación
