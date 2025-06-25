@@ -1,11 +1,15 @@
 const express = require('express'); // Importa el framework Express para crear la aplicación
 const cors = require('cors'); // Importa el middleware CORS para permitir solicitudes desde otros dominios
 const app = express(); // Crea una instancia de la aplicación Express
+const espaciosRoutes = require('./routes/espacios'); // Importa las rutas de espacios
+const reservasRoutes = require('./routes/reservas'); // Importa las rutas de reservas
 
 
 // Middlewares
 app.use(cors()); // Habilita CORS para todas las rutas
 app.use(express.json()); // Para parsear JSON
+app.use('/api/espacios', espaciosRoutes); // Define la ruta base para las rutas de espacios
+app.use('/api/reservas', reservasRoutes); // Define la ruta base para las rutas de reservas
 
 // Rutas
 const authRoutes = require('./routes/auth'); // Importa las rutas de autenticación
