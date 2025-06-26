@@ -3,6 +3,7 @@ const router = express.Router(); // Crea un enrutador de Express para manejar la
 const Usuario = require('../models/Usuario'); // Importa el modelo de Usuario para interactuar con la base de datos
 const jwt = require('jsonwebtoken'); // Importa la librería jsonwebtoken para manejar tokens JWT
 
+
 // Ruta para registrar un nuevo usuario
 router.post('/registro', async (req, res) => { // Maneja las solicitudes POST a la ruta /registro
   try { // Intenta crear un nuevo usuario con los datos del cuerpo de la solicitud
@@ -20,7 +21,11 @@ router.post('/login', async (req, res) => { // Maneja las solicitudes POST a la 
     const usuario = await Usuario.verificarCredenciales(email, password);  // Verifica las credenciales del usuario
     
     // Generar token JWT (expira en 1 hora)
-    const token = jwt.sign({ id: usuario.id }, process.env.JWT_SECRET, { expiresIn: '1h' }); // Crea un token JWT con el ID del usuario y una clave secreta, configurando la expiración a 1 hora
+    const token = jwt.sign(
+  { id: usuario.id, rol: usuario.id_rol }, // Añade el rol al payload
+  process.env.JWT_SECRET, // Utiliza una clave secreta almacenada en las variables de entorno para firmar el token
+  { expiresIn: '1h' } // Configura la expiración del token a 1 hora
+);
     
     res.json({ token }); // Responde con el token generado
   } catch (error) { // Si ocurre un error, captura la excepción
