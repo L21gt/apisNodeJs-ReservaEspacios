@@ -67,4 +67,26 @@ router.get('/', async (req, res) => { // Ruta para listar todos los espacios
   }
 });
 
+
+// En src/routes/espacios.js
+router.get('/buscar', verificarToken, async (req, res) => {
+    try {
+        const { q } = req.query;
+        const espacios = await Espacio.buscarAvanzado(q);
+        res.json(espacios);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// En src/routes/admin.js
+router.get('/estadisticas', verificarToken, esAdmin, async (req, res) => {
+    try {
+        const estadisticas = await Reserva.obtenerEstadisticas();
+        res.json(estadisticas);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 module.exports = router;  // Exporta el enrutador para que pueda ser utilizado en otras partes de la aplicación

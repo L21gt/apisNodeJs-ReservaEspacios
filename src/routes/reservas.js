@@ -20,13 +20,27 @@ router.post('/', verificarToken, async (req, res) => { // Ruta para crear una nu
 });
 
 // Listar reservas del usuario actual
-router.get('/', verificarToken, async (req, res) => { // Ruta para listar las reservas del usuario actual
-  try { // Maneja las solicitudes GET a la ruta /reservas
-    const reservas = await Reserva.listarPorUsuario(req.usuarioId); // Llama al método estático listarPorUsuario del modelo Reserva para obtener las reservas del usuario actual
-    res.json(reservas); // Responde con las reservas obtenidas en formato JSON
-  } catch (error) { // Si ocurre un error, captura la excepción
-    res.status(500).json({ error: 'Error al obtener reservas' }); // Responde con un código de estado 500 (Error interno del servidor) y un mensaje genérico de error
-  }
+// En src/routes/reservas.js, modificar el endpoint de listar reservas
+router.get('/', verificarToken, async (req, res) => {
+    try {
+        const reservas = await Reserva.listarPorUsuario(req.usuarioId);
+        
+        // Formatear fechas y asegurar que siempre devolvemos un array
+        const reservasFormateadas = Array.isArray(reservas) ? 
+            reservas.map(r => ({
+                ...r,
+                fecha_inicio: new Date(r.fecha_inicio).toISOString(),
+                fecha_fin: new Date(r.fecha_fin).toISOString()
+            })) : [];
+            
+        res.json(reservasFormateadas);
+    } catch (error) {
+        console.error('Error en GET /reservas:', error);
+        res.status(500).json({ 
+            error: 'Error al obtener reservas',
+            detalles: process.env.NODE_ENV === 'development' ? error.message : undefined
+        });
+    }
 });
 
 // Ruta para obtener una reserva por ID

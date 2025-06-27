@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Panel de Administración</h1>
+            <div class="header-actions">
+                <button id="btnCerrarSesion" class="btn-secondary">Cerrar Sesión</button>
+                <nav class="admin-nav">
+                    <button class="btn-nav active" data-section="usuarios">Usuarios</button>
+                    <button class="btn-nav" data-section="espacios">Espacios</button>
+                    <button class="btn-nav" data-section="reservas">Reservas</button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Sección Usuarios -->
+        <section id="usuarios-section" class="admin-section">
+            <div class="section-header">
+                <h2>Gestión de Usuarios</h2>
+                <button id="btnNuevoUsuario" class="btn-primary">+ Nuevo Usuario</button>
+            </div>
+            <div id="usuariosList" class="admin-list"></div>
+        </section>
+
+        <!-- Sección Espacios -->
+        <section id="espacios-section" class="admin-section" style="display:none;">
+            <div class="section-header">
+                <h2>Gestión de Espacios</h2>
+                <button id="btnNuevoEspacio" class="btn-primary">+ Nuevo Espacio</button>
+            </div>
+            <div id="espaciosAdminList" class="admin-list"></div>
+        </section>
+
+        <!-- Sección Reservas -->
+        <section id="reservas-section" class="admin-section" style="display:none;">
+            <div class="section-header">
+                <h2>Todas las Reservas</h2>
+                <div class="filters">
+                    <input type="date" id="fechaFilter">
+                    <select id="estadoFilter">
+                        <option value="">Todos</option>
+                        <option value="confirmada">Confirmadas</option>
+                        <option value="cancelada">Canceladas</option>
+                    </select>
+                </div>
+            </div>
+            <div id="reservasAdminList" class="admin-list"></div>
+        </section>
+
+        <section id="dashboard-section">
+            <h2>Estadísticas</h2>
+            <div class="charts">
+                <canvas id="reservasChart"></canvas>
+                <canvas id="usoEspaciosChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Sección Dashboard -->
+        <section id="dashboard-section" class="admin-section">
+            <h2>Dashboard</h2>
+            
+            <div class="metricas-container">
+                <div class="metrica-card">
+                    <h3>Total Reservas</h3>
+                    <p id="total-reservas">0</p>
+                </div>
+                <div class="metrica-card">
+                    <h3>Reservas Hoy</h3>
+                    <p id="reservas-hoy">0</p>
+                </div>
+                <div class="metrica-card">
+                    <h3>Ocupación Promedio</h3>
+                    <p id="ocupacion-promedio">0%</p>
+                </div>
+            </div>
+            
+            <div class="charts-container">
+                <div class="chart-wrapper">
+                    <canvas id="reservasChart"></canvas>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="usoEspaciosChart"></canvas>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal Genérico -->
+    <div id="adminModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <div id="modalContent"></div>
+            <div class="modal-actions">
+                <button id="modalConfirm" class="btn-primary">Confirmar</button>
+                <button id="modalCancel" class="btn-secondary">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loader -->
+    <div id="loader" class="loader">
+        <div class="spinner"></div>
+        <p>Cargando...</p>
+    </div>
+
+    <script src="./js/admin.js"></script>
+</body>
+</html>

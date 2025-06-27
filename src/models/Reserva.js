@@ -158,6 +158,22 @@ class Reserva {  // Clase Reserva que representa la tabla de reservas en la base
         const { rows } = await pool.query(query, [...valores, id_reserva, id_usuario]); // Ejecuta la consulta en la base de datos, pasando los valores de los campos a actualizar, el ID de la reserva y el ID del usuario como parámetros
         return rows[0]; // Retorna la reserva actualizada
     }
+
+
+    
+    static async obtenerEstadisticas() {
+        const query = `
+        SELECT 
+            COUNT(*) as total_reservas,
+            COUNT(CASE WHEN fecha_inicio::date = CURRENT_DATE THEN 1 END) as reservas_hoy,
+            ROUND((COUNT(*) * 100.0 / (SELECT COUNT(*) FROM espacio)) as ocupacion_promedio
+        FROM reserva
+        WHERE estado != 'cancelada'
+        `;
+        
+        const { rows } = await pool.query(query);
+        return rows[0];
+    }
 }
 
 module.exports = Reserva; // Exporta la clase Reserva para que pueda ser utilizada en otras partes de la aplicación

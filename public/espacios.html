@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espacios Disponibles</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    
+    <div class="container">
+        <header class="header">
+            <h1>Espacios Disponibles</h1>
+            <div class="header-actions">
+                <div class="search-box">
+                    <input type="text" id="busquedaInput" placeholder="Buscar espacios...">
+                    <button id="btnBuscar">Buscar</button>
+                </div>
+                <button id="btnCerrarSesion" class="btn-secondary">Cerrar Sesión</button>
+                <a href="mis-reservas.html" class="btn-link">Mis Reservas</a>
+            </div>
+        </header>
+        
+        <div id="espaciosList" class="grid-container"></div>
+    </div>
+    
+
+    <!-- Modal para Reservas -->
+    <div id="modalReserva" class="modal">
+        <div class="modal-content">
+            <h2>Nueva Reserva</h2>
+            <input type="hidden" id="idEspacioReserva">
+            
+            <div class="form-group">
+                <label>Fecha de Inicio:</label>
+                <input type="datetime-local" id="fechaInicio" step="3600" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Fecha de Fin:</label>
+                <input type="datetime-local" id="fechaFin" step="3600" required>
+            </div>
+            
+            <div class="modal-actions">
+                <button onclick="confirmarReserva()" class="btn-primary">Confirmar</button>
+                <button onclick="document.getElementById('modalReserva').style.display = 'none'" class="btn-secondary">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loader -->
+    <div id="loader" class="loader">
+        <div class="spinner"></div>
+        <p>Cargando...</p>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

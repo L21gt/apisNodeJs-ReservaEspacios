@@ -279,3 +279,16 @@ Body
   "motivo": "Reunión de equipo"
 }
 ```
+
+### Listar reservas por espacio
+```
+Método: GET
+
+    http://localhost:3000/api/espacios/1/reservas
+
+```
+
+Headers
+```
+Authorization: Bearer <token_admin>
+```

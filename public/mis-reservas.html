@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Reservas</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Mis Reservas</h1>
+            <div class="header-actions">
+                <button id="btnCerrarSesion" class="btn-secondary">Cerrar Sesión</button>
+                <a href="espacios.html" class="btn-link">Volver a Espacios</a>
+            </div>
+        </header>
+        
+        <div id="reservasList" class="reservas-container"></div>
+    </div>
+
+    <!-- Loader -->
+    <div id="loader" class="loader">
+        <div class="spinner"></div>
+        <p>Cargando...</p>
+    </div>
+
+    <!-- En mis-reservas.html -->
+    <section class="calendar-section">
+        <h2>Calendario de Reservas</h2>
+        <div id="calendar"></div>
+    </section>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
