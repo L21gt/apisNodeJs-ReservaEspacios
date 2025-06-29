@@ -1,8 +1,9 @@
+// Load environment variables from a .env file
+require('dotenv').config(); 
+
 // This file sets up a connection pool to a PostgreSQL database using the 'pg' library.
 const { Pool }  = require('pg');
 
-// Load environment variables from a .env file
-require('dotenv').config();
 
 // Create a new pool instance with the database connection details
 const pool = new Pool({
@@ -12,6 +13,8 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
 });
+
+console.log('Base de datos configurada en:', process.env.DB_HOST); // Opcional para verificar
 
 // Export the pool instance for use in other parts of the application
 module.exports = pool;

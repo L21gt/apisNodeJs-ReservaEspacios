@@ -1,24 +1,23 @@
 // src/websocket.js
 const WebSocket = require('ws');
 
-function setupWebSocket(server) {
+module.exports = function setupWebSocket(server) {
     const wss = new WebSocket.Server({ server });
     
     wss.on('connection', (ws) => {
-        console.log('Nuevo cliente conectado');
+        console.log('Nuevo cliente WebSocket conectado');
         
         ws.on('message', (message) => {
-            console.log(`Mensaje recibido: ${message}`);
+            console.log('Mensaje WebSocket recibido:', message);
         });
         
-        // Enviar notificación cuando se crea una reserva
         ws.send(JSON.stringify({
             type: 'connection_established',
-            message: 'Conectado al servidor de notificaciones'
+            message: 'Conexión WebSocket exitosa'
         }));
     });
     
     return wss;
-}
+};
 
-module.exports = setupWebSocket;
+//module.exports = setupWebSocket;
