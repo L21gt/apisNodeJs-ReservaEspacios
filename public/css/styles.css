@@ -1,0 +1,512 @@
+/* =============================================== */
+/* -- Paleta de Colores y Variables Globales -- */
+/* =============================================== */
+:root {
+    /* Paleta principal: Tonos tierra y verdes orgánicos */
+    --primary-color: #587443; /* Verde Olivo principal */
+    --primary-hover: #4A6337; /* Verde Olivo más oscuro */
+    --accent-color: #7A8768;   /* Verde Musgo para acentos */
+    
+    --background-color: #E9E6E1; /* Un fondo cálido y neutro (Greige) */
+    --surface-color: #FFFFFF;    /* Blanco puro para tarjetas y modales */
+    --text-color-dark: #2F3D27;  /* Verde Carbón para texto principal */
+    --text-color-light: #7A8768; /* Verde Musgo para texto secundario/labels */
+    --border-color: #D1CEC7;
+    --shadow-color: rgba(47, 61, 39, 0.1);
+
+    --success-color: #2E7D32;
+    --danger-color: #C62828;
+}
+
+/* =============================================== */
+/* -- Estilos Base y de Página -- */
+/* =============================================== */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color-dark);
+    margin: 0;
+    min-height: 100vh;
+}
+
+.body-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 40px;
+}
+
+/* =============================================== */
+/* -- Formularios de Autenticación y Modales -- */
+/* =============================================== */
+.auth-container {
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+}
+
+.auth-form, .modal-content {
+    background-color: var(--surface-color);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px var(--shadow-color);
+}
+
+.auth-form h2, .modal-content h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-weight: 700;
+    color: var(--text-color-dark);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-color-light);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(88, 116, 67, 0.2);
+}
+
+.toggle-link {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 14px;
+}
+
+.toggle-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* =============================================== */
+/* -- Botones -- */
+/* =============================================== */
+.btn, .btn-primary, .btn-reservar {
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(88, 116, 67, 0.3);
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+
+.btn:hover, .btn-primary:hover, .btn-reservar:hover {
+    transform: translateY(-2px);
+    background-color: var(--primary-hover);
+    box-shadow: 0 6px 20px rgba(88, 116, 67, 0.4);
+}
+
+/* =============================================== */
+/* -- Encabezado y Navegación Principal -- */
+/* =============================================== */
+.page-header {
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 0 40px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 40px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.header-container .logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--text-color-light);
+    font-weight: 500;
+    margin-left: 30px;
+    padding: 10px 5px;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.main-nav a.active, .main-nav a:hover {
+    color: var(--primary-color);
+}
+
+.btn-logout {
+    width: auto;
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    transition: all 0.3s ease;
+    margin-left: 30px;
+}
+
+.btn-logout:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+/* =============================================== */
+/* -- Panel de Administrador y Tablas -- */
+/* =============================================== */
+.admin-nav {
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.nav-tab {
+    padding: 12px 25px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: -1px;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    color: var(--text-color-light);
+}
+
+.nav-tab.active {
+    border-bottom-color: var(--primary-color);
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.table-container {
+    background-color: var(--surface-color);
+    border-radius: 12px;
+    padding: 10px 20px;
+    box-shadow: 0 8px 25px var(--shadow-color);
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th {
+    padding: 15px;
+    border-bottom: 2px solid var(--border-color);
+    background-color: #f8f9fa;
+    font-weight: 500;
+    font-size: 12px;
+    color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid #f0f3f5;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+th[data-sort] {
+    cursor: pointer;
+}
+th[data-sort]:hover {
+    color: var(--primary-color);
+}
+
+td button {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background-color: #fff;
+    cursor: pointer;
+    margin-right: 5px;
+    transition: all 0.2s ease;
+}
+td button:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#btn-nuevo-espacio {
+    width: auto;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+}
+
+/* =============================================== */
+/* -- Tarjetas (Espacios y Mis Reservas) -- */
+/* =============================================== */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.reservas-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.espacio-card, .reserva-user-card {
+    background-color: var(--surface-color);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 8px 25px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 5px solid transparent;
+}
+
+.espacio-card:hover, .reserva-user-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(47, 61, 39, 0.15);
+}
+
+.espacio-card h3, .reserva-user-card h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.reserva-user-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* =============================================== */
+/* -- Modal -- */
+/* =============================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(47, 61, 39, 0.6);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--border-color);
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.close-modal:hover {
+    color: var(--text-color-dark);
+    transform: rotate(90deg);
+}
+
+/* =============================================== */
+/* -- Estados con Colores -- */
+/* =============================================== */
+.estado-activo, .estado-confirmada, .slot-libre {
+    color: var(--success-color);
+    background-color: rgba(46, 125, 50, 0.1);
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    display: inline-block;
+}
+
+.estado-bloqueado, .estado-cancelada, .slot-ocupado {
+    color: var(--danger-color);
+    background-color: rgba(198, 40, 40, 0.1);
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    display: inline-block;
+}
+
+/* =============================================== */
+/* -- Filtros -- */
+/* =============================================== */
+.filter-container {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.filter-container select, .filter-container input {
+    padding: 10px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: #f8fafc;
+}
+
+/* =============================================== */
+/* -- Estilos específicos del horario -- */
+/* =============================================== */
+.horario-container {
+    margin-top: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: #f8fafc;
+}
+
+.horario-slot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.horario-slot:last-child {
+    border-bottom: none;
+}
+
+.horario-slot .time {
+    font-weight: 500;
+    color: var(--text-color-dark);
+}
+
+.horario-slot .status {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* =============================================== */
+/* -- Estilos específicos de tarjetas de espacio -- */
+/* =============================================== */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.card-header h3 {
+    margin: 0;
+    border: none;
+    padding: 0;
+}
+
+.status-indicator {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: white;
+}
+
+.espacio-libre .status-indicator {
+    background-color: var(--success-color);
+}
+
+.espacio-ocupado .status-indicator {
+    background-color: var(--danger-color);
+}
+
+.espacio-libre {
+    border-left: 5px solid var(--success-color);
+}
+
+.espacio-ocupado {
+    border-left: 5px solid var(--danger-color);
+    opacity: 0.9;
+}
+
+.card-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.card-actions button {
+    width: 100%;
+}
+
+/* Estilo para la información del usuario en el header */
+.user-info {
+    color: var(--text-color-light);
+    margin-right: 25px;
+    font-weight: 500;
+    border-right: 1px solid var(--border-color);
+    padding-right: 25px;
+}
